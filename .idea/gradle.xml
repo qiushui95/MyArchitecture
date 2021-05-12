@@ -12,12 +12,13 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/lib_constant" />
+            <option value="$PROJECT_DIR$/lib_domain" />
+            <option value="$PROJECT_DIR$/lib_domain_impl" />
             <option value="$PROJECT_DIR$/lib_error" />
             <option value="$PROJECT_DIR$/lib_ext" />
             <option value="$PROJECT_DIR$/lib_http" />
+            <option value="$PROJECT_DIR$/lib_model" />
             <option value="$PROJECT_DIR$/lib_starter" />
-            <option value="$PROJECT_DIR$/lib_usecase" />
-            <option value="$PROJECT_DIR$/lib_usecase_impl" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -5,11 +5,13 @@
 	错误库  
 - ## **lib_starter**  
 	初始化库  
-- ## **lib_usecase**  
-	domain用例库  
-- ## **lib_usecase_impl**  
-	domain用例实现类库  
+- ## **lib_domain**  
+	domain库  
+- ## **lib_domain_impl**  
+	domain实现类库  
 - ## **lib_ext**  
 	扩展方法库
 - ## **lib_http**
 	网络请求库
+- ## **lib_model**
+	model库

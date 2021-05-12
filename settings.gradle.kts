@@ -12,9 +12,10 @@ rootProject.name = "MyArchitecture"
 
 include(":app")
 include(":lib_ext")
-include(":lib_usecase")
-include(":lib_usecase_impl")
+include(":lib_domain")
+include(":lib_domain_impl")
 include(":lib_starter")
 include(":lib_error")
 include(":lib_constant")
 include(":lib_http")
+include(":lib_model")
