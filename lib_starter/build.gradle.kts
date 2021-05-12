@@ -1,5 +1,3 @@
-import son.ysy.useful.dependencies.BuildVersion
-
 plugins {
     id("com.android.library")
     id("kotlin-android")
@@ -9,12 +7,12 @@ plugins {
 setProperty("archivesBaseName", "starter")
 
 android {
-    compileSdkVersion(BuildVersion.CompileSdk.value)
-    buildToolsVersion = BuildVersion.BuildTools.value
+    compileSdkVersion(30)
+    buildToolsVersion = "30.0.3"
 
     defaultConfig {
-        minSdkVersion(BuildVersion.MinSdk.value)
-        targetSdkVersion(BuildVersion.TargetSdk.value)
+        minSdkVersion(21)
+        targetSdkVersion(30)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

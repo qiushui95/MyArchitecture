@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.utils.addToStdlib.cast
+
 plugins {
     id("java-library")
     id("kotlin")
@@ -13,9 +15,9 @@ java {
 
 dependencies {
 
-    if (rootProject.extra["isRemote"]==true){
-        api("com.github.qiushui95.MyArchitecture:usecase:${rootProject.extra["libVersion"]}")
-    }else{
+    if (rootProject.extra["isRemote"] == true) {
+        api(rootProject.extra["dependencyFormat"].cast<String>().format("usecase"))
+    } else {
         api(project(":lib_usecase"))
     }
 

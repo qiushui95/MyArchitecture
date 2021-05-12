@@ -6,7 +6,7 @@ plugins {
     id("com.github.dcendents.android-maven")
 }
 
-setProperty("archivesBaseName", "error")
+setProperty("archivesBaseName", "http")
 
 android {
     compileSdkVersion(30)
@@ -32,14 +32,30 @@ android {
 }
 
 dependencies {
-
     if (rootProject.extra["isRemote"] == true) {
+        implementation(rootProject.extra["dependencyFormat"].cast<String>().format("ext"))
         implementation(rootProject.extra["dependencyFormat"].cast<String>().format("constant"))
         implementation(rootProject.extra["dependencyFormat"].cast<String>().format("starter"))
+        implementation(rootProject.extra["dependencyFormat"].cast<String>().format("error"))
     } else {
+        implementation(project(":lib_ext"))
         implementation(project(":lib_constant"))
         implementation(project(":lib_starter"))
+        implementation(project(":lib_error"))
     }
+
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.5.0")
+
+    implementation("com.squareup.okhttp3:okhttp:4.9.1")
+
+    val retrofitVersion = "2.9.0"
+
+    api("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion"){
+        exclude("com.squareup.moshi")
+    }
+
+    compileOnly("com.squareup.moshi:moshi:1.12.0")
 
     compileOnly(rootProject.extra["koinAndroidExt"].cast<String>())
 }
