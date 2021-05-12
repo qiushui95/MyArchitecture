@@ -1,5 +1,5 @@
-import son.ysy.useful.dependencies.BuildVersion
 import son.ysy.useful.dependencies.AndroidDependency
+import son.ysy.useful.dependencies.BuildVersion
 
 plugins {
     id("com.android.library")
@@ -35,6 +35,7 @@ android {
 dependencies {
 
     if (rootProject.extra["isRemote"] == true) {
+        implementation("com.github.qiushui95.MyArchitecture:constant:${rootProject.extra["libVersion"]}")
         implementation("com.github.qiushui95.MyArchitecture:starter:${rootProject.extra["libVersion"]}")
     } else {
         implementation(project(":lib_constant"))
@@ -42,5 +43,4 @@ dependencies {
     }
 
     compileOnly(AndroidDependency.Koin.AndroidExt.fullGradle)
-
 }
