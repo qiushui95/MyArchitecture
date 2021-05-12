@@ -4,17 +4,20 @@ plugins {
     id("com.github.dcendents.android-maven")
 }
 
-group = "com.github.qiushui.architecture"
 setProperty("archivesBaseName", "usecase_impl")
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_15
-    targetCompatibility = JavaVersion.VERSION_15
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 dependencies {
-//    println(rootProject.extra["isRemote"])
 
-    api(project(":lib_usecase"))
+    if (rootProject.extra["isRemote"]==true){
+        api("com.github.qiushui95.MyArchitecture:usecase:${rootProject.extra["libVersion"]}")
+    }else{
+        api(project(":lib_usecase"))
+    }
+
     compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0-RC")
 }

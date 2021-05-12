@@ -4,7 +4,7 @@ plugins {
     id("com.github.dcendents.android-maven")
 }
 
-setProperty("archivesBaseName", "usecase")
+setProperty("archivesBaseName", "constant")
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -12,5 +12,4 @@ java {
 }
 
 dependencies {
-    compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0-RC")
 }
