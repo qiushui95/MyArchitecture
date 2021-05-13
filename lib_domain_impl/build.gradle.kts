@@ -6,7 +6,7 @@ plugins {
     id("com.github.dcendents.android-maven")
 }
 
-setProperty("archivesBaseName", "domain_impl")
+setProperty("archivesBaseName", "domain-impl")
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
