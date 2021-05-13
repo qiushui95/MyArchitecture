@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/lib_constant" />
             <option value="$PROJECT_DIR$/lib_domain" />
             <option value="$PROJECT_DIR$/lib_domain_impl" />
+            <option value="$PROJECT_DIR$/lib_entity" />
             <option value="$PROJECT_DIR$/lib_error" />
             <option value="$PROJECT_DIR$/lib_ext" />
             <option value="$PROJECT_DIR$/lib_http" />

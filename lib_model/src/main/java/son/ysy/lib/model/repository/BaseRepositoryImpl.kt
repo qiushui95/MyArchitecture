@@ -1,6 +1,6 @@
 package son.ysy.lib.model.repository
 
-import son.ysy.lib.model.ModelResult
+import son.ysy.lib.entity.ModelResult
 
 abstract class BaseRepositoryImpl {
     protected inline fun <reified T> T.toResultData(): ModelResult.Data<T> {

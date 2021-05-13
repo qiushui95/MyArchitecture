@@ -6,7 +6,7 @@ val libVersion by extra("1.0.3")
 val dependencyFormat by extra("com.github.qiushui95.MyArchitecture:%s:$libVersion")
 
 val koinDependencyFormat = "io.insert-koin:%s:3.0.1"
-val koinAndroidExt by extra(koinDependencyFormat.format("koin-android-model"))
+val koinAndroidExt by extra(koinDependencyFormat.format("koin-android-ext"))
 
 buildscript {
     repositories {
