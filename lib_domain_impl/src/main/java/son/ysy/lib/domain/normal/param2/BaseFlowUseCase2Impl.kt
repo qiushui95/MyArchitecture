@@ -15,5 +15,5 @@ abstract class BaseFlowUseCase2Impl<Param1, Param2, Result> : FlowUseCase2<Param
             DomainResult.build(it)
         }
 
-    protected abstract fun execute(param1: Param1, param2: Param2): Result?
+    protected abstract suspend fun execute(param1: Param1, param2: Param2): Result?
 }

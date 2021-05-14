@@ -21,7 +21,7 @@ abstract class BaseFlowUseCase4Impl<Param1, Param2, Param3, Param4, Result> :
             DomainResult.build(it)
         }
 
-    protected abstract fun execute(
+    protected abstract suspend fun execute(
         param1: Param1,
         param2: Param2,
         param3: Param3,

@@ -22,7 +22,7 @@ abstract class BaseFlowPagingUseCase2Impl<Param1, Param2, Result> :
             PagingResult(pageInfo, DomainResult.build(it))
         }
 
-    protected abstract fun execute(
+    protected abstract suspend fun execute(
         pageInfo: PageInfo,
         param1: Param1,
         param2: Param2

@@ -20,7 +20,7 @@ abstract class BaseFlowUseCase3Impl<Param1, Param2, Param3,
             DomainResult.build(it)
         }
 
-    protected abstract fun execute(
+    protected abstract suspend fun execute(
         param1: Param1,
         param2: Param2,
         param3: Param3

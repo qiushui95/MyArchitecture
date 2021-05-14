@@ -16,5 +16,5 @@ abstract class BaseFlowUseCaseImpl<Result> : FlowUseCase<Result> {
             DomainResult.build(it)
         }
 
-    protected abstract fun execute(): Result?
+    protected abstract suspend fun execute(): Result?
 }

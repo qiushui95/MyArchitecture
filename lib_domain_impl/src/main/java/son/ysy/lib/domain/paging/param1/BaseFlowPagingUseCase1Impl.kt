@@ -20,5 +20,5 @@ abstract class BaseFlowPagingUseCase1Impl<Param, Result> : FlowPagingUseCase1<Pa
             PagingResult(pageInfo, DomainResult.build(it))
         }
 
-    protected abstract fun execute(pageInfo: PageInfo, param: Param): List<Result>?
+    protected abstract suspend fun execute(pageInfo: PageInfo, param: Param): List<Result>?
 }
