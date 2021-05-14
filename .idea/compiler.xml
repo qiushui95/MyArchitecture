@@ -4,6 +4,7 @@
     <bytecodeTargetLevel target="1.8">
       <module name="MyArchitecture.app" target="15" />
       <module name="MyArchitecture.lib_error" target="15" />
+      <module name="MyArchitecture.lib_flow_work" target="15" />
       <module name="MyArchitecture.lib_http" target="15" />
       <module name="MyArchitecture.lib_starter" target="15" />
     </bytecodeTargetLevel>

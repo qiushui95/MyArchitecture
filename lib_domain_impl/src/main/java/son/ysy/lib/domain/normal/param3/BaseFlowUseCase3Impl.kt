@@ -1,10 +1,9 @@
 package son.ysy.lib.domain.normal.param3
 
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import son.ysy.lib.domain.DomainResult
+import son.ysy.lib.domain.build
 
 abstract class BaseFlowUseCase3Impl<Param1, Param2, Param3,
         Result> : FlowUseCase3<Param1, Param2, Param3, Result> {
@@ -14,7 +13,6 @@ abstract class BaseFlowUseCase3Impl<Param1, Param2, Param3,
         param2: Param2,
         param3: Param3,
     ) = executeFlow(param1, param2, param3)
-        .flowOn(Dispatchers.IO)
         .map {
             DomainResult.build(it)
         }

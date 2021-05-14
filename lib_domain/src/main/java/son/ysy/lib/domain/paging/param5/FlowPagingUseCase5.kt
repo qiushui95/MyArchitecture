@@ -1,7 +1,7 @@
 package son.ysy.lib.domain.paging.param5
 
 import kotlinx.coroutines.flow.Flow
-import son.ysy.lib.domain.paging.PagingResult
+import son.ysy.lib.domain.paging.DomainPagingResult
 import son.ysy.lib.entity.PageInfo
 
 interface FlowPagingUseCase5<Param1, Param2, Param3, Param4, Param5, Result> {
@@ -12,5 +12,5 @@ interface FlowPagingUseCase5<Param1, Param2, Param3, Param4, Param5, Result> {
         param3: Param3,
         param4: Param4,
         param5: Param5,
-    ): Flow<PagingResult<Result>>
+    ): Flow<DomainPagingResult<Result>>
 }

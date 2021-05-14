@@ -23,5 +23,5 @@ dependencies {
         api(project(":lib_entity"))
     }
 
-    compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0-RC")
+    compileOnly(rootProject.extra["coroutinesCore"].cast<String>())
 }

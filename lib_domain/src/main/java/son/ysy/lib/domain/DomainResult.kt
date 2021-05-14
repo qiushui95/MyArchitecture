@@ -1,13 +1,7 @@
 package son.ysy.lib.domain
 
 sealed class DomainResult<T> {
-    companion object {
-        fun <T> build(data: T?): DomainResult<T> = if (data == null) {
-            None()
-        } else {
-            Data(data)
-        }
-    }
+    companion object {}
 
     data class Data<T>(val data: T) : DomainResult<T>()
 
