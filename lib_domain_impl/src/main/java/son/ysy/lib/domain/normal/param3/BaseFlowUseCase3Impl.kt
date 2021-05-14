@@ -13,12 +13,19 @@ abstract class BaseFlowUseCase3Impl<Param1, Param2, Param3,
         param1: Param1,
         param2: Param2,
         param3: Param3,
-    ) = flow {
-        emit(execute(param1, param2, param3))
-    }.flowOn(Dispatchers.IO)
+    ) = executeFlow(param1, param2, param3)
+        .flowOn(Dispatchers.IO)
         .map {
             DomainResult.build(it)
         }
+
+    protected open fun executeFlow(
+        param1: Param1,
+        param2: Param2,
+        param3: Param3
+    ) = flow {
+        emit(execute(param1, param2, param3))
+    }
 
     protected abstract suspend fun execute(
         param1: Param1,

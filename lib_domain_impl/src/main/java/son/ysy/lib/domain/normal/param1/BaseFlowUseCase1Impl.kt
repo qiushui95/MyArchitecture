@@ -8,12 +8,15 @@ import son.ysy.lib.domain.DomainResult
 
 abstract class BaseFlowUseCase1Impl<Param, Result> : FlowUseCase1<Param, Result> {
 
-    override fun invoke(param: Param) = flow {
-        emit(execute(param))
-    }.flowOn(Dispatchers.IO)
+    override fun invoke(param: Param) = executeFlow(param)
+        .flowOn(Dispatchers.IO)
         .map {
             DomainResult.build(it)
         }
+
+    protected open fun executeFlow(param: Param) = flow {
+        emit(execute(param))
+    }
 
     protected abstract suspend fun execute(param: Param): Result?
 }
