@@ -18,7 +18,7 @@ class FlowWork<T> internal constructor(
     val errorMessageFlow: MutableSharedFlow<String?>?,
     val dataFlow: MutableSharedFlow<T?>?,
     val statusFlow: MutableSharedFlow<FlowWorkStatus<T>?>?,
-) {
+) : FlowWorkGetter<T> {
     companion object {
 
         @CheckResult
@@ -62,6 +62,24 @@ class FlowWork<T> internal constructor(
 
     val currentData: T?
         get() = data.get()
+
+    override val currentBusyFlow: Flow<Boolean>? by lazy {
+        busyFlow?.map { it == true }
+    }
+
+    override val currentErrorMessageFlow: Flow<String>? by lazy {
+        errorMessageFlow?.filterNotNull()
+    }
+
+    override val currentDataFlow: Flow<T?>? by lazy {
+        dataFlow
+    }
+
+    override val currentStatusFlow: Flow<FlowWorkStatus<T>?>? by lazy {
+        statusFlow
+    }
+
+    val getter: FlowWorkGetter<T> = this
 
     @ExperimentalCoroutinesApi
     internal fun bind() {

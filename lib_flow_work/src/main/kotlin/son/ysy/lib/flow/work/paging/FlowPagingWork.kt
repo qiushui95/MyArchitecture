@@ -15,7 +15,7 @@ internal class FlowPagingWork<T : PagingUiInfo<T, L>, L> internal constructor(
     initData: T,
     val errorMessageFlow: MutableSharedFlow<String?>?,
     val statusFlow: MutableSharedFlow<FlowPagingWorkStatus<T, L>?>?,
-) {
+) : FlowPagingWorkGetter<T, L> {
 
     companion object {
 
@@ -85,6 +85,20 @@ internal class FlowPagingWork<T : PagingUiInfo<T, L>, L> internal constructor(
     val currentData: T
         get() = currentStatus.data
 
+    override val currentErrorMessageFlow: Flow<String>? by lazy {
+        errorMessageFlow?.filterNotNull()
+    }
+
+    override val currentStatusFlow: Flow<FlowPagingWorkStatus<T, L>>? by lazy {
+        statusFlow?.filterNotNull()
+    }
+
+    override val currentRefreshFlow: Flow<Boolean>? by lazy {
+        statusFlow?.filterNotNull()
+            ?.map { it is FlowPagingWorkStatus.Busy.Refresh }
+    }
+
+    val getter: FlowPagingWorkGetter<T, L> = this
 
     @ExperimentalCoroutinesApi
     fun bind() {
