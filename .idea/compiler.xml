@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8">
-      <module name="MyArchitecture.app" target="15" />
-      <module name="MyArchitecture.architecture_error" target="15" />
-      <module name="MyArchitecture.architecture_flow_work" target="15" />
-      <module name="MyArchitecture.architecture_http" target="15" />
-      <module name="MyArchitecture.architecture_initializer" target="15" />
-      <module name="MyArchitecture.architecture_starter" target="15" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8" />
   </component>
 </project>

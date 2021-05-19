@@ -1,11 +1,14 @@
 package son.ysy.architecture.initializer
 
 import android.app.Application
+import android.content.Context
 import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
+import org.koin.dsl.bind
+import org.koin.dsl.module
 import son.ysy.architecture.constant.ArchitectureConstant
 import son.ysy.architecture.entity.PageInfo
 
@@ -26,6 +29,12 @@ object ArchitectureInitializer {
             } else {
                 Level.ERROR
             }.apply(this::androidLogger)
+
+            modules(module {
+                single {
+                    koin
+                }
+            })
         }
 
         application.getKoin().apply {
