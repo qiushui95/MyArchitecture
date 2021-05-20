@@ -1,24 +1,26 @@
 package son.ysy.architecture.starter
 
 import android.app.Application
-import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  *
  */
 abstract class BaseStarter {
 
-    private val initTimes = AtomicInteger(0)
+    private val hasStart = AtomicBoolean(false)
 
     lateinit var app: Application
 
     operator fun invoke(application: Application) {
-        if (initTimes.getAndIncrement() > 0) {
+        if (hasStart.get()) {
             return
         }
-        execute(application)
-
         app = application
+
+        hasStart.set(true)
+
+        execute(application)
     }
 
     protected abstract fun execute(application: Application)

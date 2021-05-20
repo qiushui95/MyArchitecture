@@ -19,21 +19,9 @@ internal class MoshiConverterFactory(koin: Koin) : Converter.Factory() {
         MoshiConverterFactory.create(koin.get())
     }
 
-    private val defaultCheckResponseCode = koin
-        .getProperty<CheckResponseCode>(HttpConstants.KEY_CHECK_RESPONSE_CODE)
+    private val defaultCheckResponseCode: CheckResponseCode by koin.inject()
 
-    private val defaultIgnoreParents = koin
-        .getProperty<IgnoreParents>(HttpConstants.KEY_IGNORE_PARENTS)
-
-    private fun <T> KFunction<T>.callBy(vararg paramPair: Pair<String, Any?>): T {
-        val map = mutableMapOf<KParameter, Any?>()
-
-        parameters.forEach { kParameter ->
-            map[kParameter] = paramPair.firstOrNull { it.first == kParameter.name }?.second
-        }
-
-        return callBy(map)
-    }
+    private val defaultIgnoreParents: IgnoreParents by koin.inject()
 
     override fun responseBodyConverter(
         type: Type,
@@ -48,8 +36,8 @@ internal class MoshiConverterFactory(koin: Koin) : Converter.Factory() {
         when {
             containsSkipCheckResponseCode -> annotationList.removeAll { it is SkipCheckResponseCode }
             !containsCheckResponseCode -> {
-                defaultCheckResponseCode?.apply(annotationList::add)
-                defaultIgnoreParents?.apply(annotationList::add)
+                defaultCheckResponseCode.apply(annotationList::add)
+                defaultIgnoreParents.apply(annotationList::add)
             }
         }
 

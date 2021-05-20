@@ -36,10 +36,15 @@ dependencies {
     if (rootProject.extra["isRemote"] == true) {
         implementation(rootProject.extra["dependencyFormat"].cast<String>().format("constant"))
         implementation(rootProject.extra["dependencyFormat"].cast<String>().format("entity"))
-
+        implementation(rootProject.extra["dependencyFormat"].cast<String>().format("model"))
+        implementation(rootProject.extra["dependencyFormat"].cast<String>().format("getter"))
+        implementation(rootProject.extra["dependencyFormat"].cast<String>().format("http"))
     } else {
         implementation(project(":architecture_constant"))
         implementation(project(":architecture_entity"))
+        implementation(project(":architecture_model"))
+        implementation(project(":architecture_getter"))
+        implementation(project(":architecture_http"))
     }
 
     compileOnly(rootProject.extra["koinAndroidExt"].cast<String>())

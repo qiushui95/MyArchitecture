@@ -20,3 +20,5 @@
 	初始化库
 - ## **[architecture_flow_work](/architecture_flow_work)**
 	工作流
+- ## **[architecture_initializer](/architecture_initializer)**
+	架构初始化

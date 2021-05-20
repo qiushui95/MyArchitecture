@@ -11,6 +11,10 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 import son.ysy.architecture.constant.ArchitectureConstant
 import son.ysy.architecture.entity.PageInfo
+import son.ysy.architecture.getter.TokenGetter
+import son.ysy.architecture.getter.VersionGetter
+import son.ysy.architecture.http.json.annotations.CheckResponseCode
+import son.ysy.architecture.http.json.annotations.IgnoreParents
 
 object ArchitectureInitializer {
 
@@ -19,7 +23,11 @@ object ArchitectureInitializer {
         isDevelop: Boolean = false,
         baseUrl: String,
         httpTimeout: Long = 10 * 1000,
-        startPageInfo: PageInfo
+        startPageInfo: PageInfo,
+        tokenGetter: () -> TokenGetter,
+        versionGetter: () -> VersionGetter,
+        defaultCheckResponseCode: () -> CheckResponseCode,
+        defaultIgnoreParents: () -> IgnoreParents,
     ) {
         startKoin {
             androidContext(application)
@@ -33,6 +41,22 @@ object ArchitectureInitializer {
             modules(module {
                 single {
                     koin
+                }
+
+                single {
+                    tokenGetter()
+                } bind TokenGetter::class
+
+                single {
+                    versionGetter()
+                } bind VersionGetter::class
+
+                single {
+                    defaultCheckResponseCode()
+                }
+
+                single {
+                    defaultIgnoreParents()
                 }
             })
         }

@@ -1,11 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 val isRemote by extra(false)
-val libVersion by extra("1.0.10")
+val libVersion by extra("1.0.11")
 
 val dependencyFormat by extra("com.github.qiushui95.MyArchitecture:%s:$libVersion")
 
-val koinDependencyFormat = "io.insert-koin:%s:3.0.1"
+val koinDependencyFormat = "io.insert-koin:%s:3.0.2"
 val koinAndroidExt by extra(koinDependencyFormat.format("koin-android-ext"))
 
 val coroutinesDependencyFormat = "org.jetbrains.kotlinx:%s:1.5.0"
