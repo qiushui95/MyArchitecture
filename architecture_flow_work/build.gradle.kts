@@ -6,6 +6,9 @@ plugins {
     id("com.github.dcendents.android-maven")
 }
 
+group = rootProject.extra["groupId"].cast<String>()
+version = rootProject.extra["libVersion"].cast<String>()
+
 setProperty("archivesBaseName", "architecture-flow-work")
 
 android {

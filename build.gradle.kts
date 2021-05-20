@@ -2,6 +2,7 @@
 
 val isRemote by extra(false)
 val libVersion by extra("1.0.12")
+val groupId by extra("com.github.qiushui95.MyArchitecture")
 
 val dependencyFormat by extra("com.github.qiushui95.MyArchitecture:%s:$libVersion")
 

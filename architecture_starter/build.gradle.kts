@@ -1,8 +1,13 @@
+import org.jetbrains.kotlin.utils.addToStdlib.cast
+
 plugins {
     id("com.android.library")
     id("kotlin-android")
     id("com.github.dcendents.android-maven")
 }
+
+group = rootProject.extra["groupId"].cast<String>()
+version = rootProject.extra["libVersion"].cast<String>()
 
 setProperty("archivesBaseName", "architecture-starter")
 
