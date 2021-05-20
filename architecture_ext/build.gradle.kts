@@ -12,5 +12,5 @@ java {
 }
 
 dependencies {
-    implementation(kotlin("reflect"))
+    compileOnly(kotlin("reflect"))
 }

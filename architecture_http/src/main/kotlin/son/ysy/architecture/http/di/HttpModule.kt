@@ -21,10 +21,6 @@ internal class HttpModule {
         } bind Interceptor::class
 
         single {
-            RequestOtherErrorHandler()
-        } bind ErrorMessageDisplayHandler::class
-
-        single {
             val timeout = getKoin().getProperty(ArchitectureConstant.KEY_HTTP_TIMEOUT, 10L)
 
             OkHttpClient.Builder()
