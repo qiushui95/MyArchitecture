@@ -46,12 +46,14 @@ dependencies {
         implementation(rootProject.extra["dependencyFormat"].cast<String>().format("model"))
         implementation(rootProject.extra["dependencyFormat"].cast<String>().format("getter"))
         implementation(rootProject.extra["dependencyFormat"].cast<String>().format("http"))
+        implementation(rootProject.extra["dependencyFormat"].cast<String>().format("error"))
     } else {
         implementation(project(":architecture_constant"))
         implementation(project(":architecture_entity"))
         implementation(project(":architecture_model"))
         implementation(project(":architecture_getter"))
         implementation(project(":architecture_http"))
+        implementation(project(":architecture_error"))
     }
 
     compileOnly(rootProject.extra["koinAndroidExt"].cast<String>())

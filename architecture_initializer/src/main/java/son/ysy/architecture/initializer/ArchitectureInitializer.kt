@@ -11,6 +11,7 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 import son.ysy.architecture.constant.ArchitectureConstant
 import son.ysy.architecture.entity.PageInfo
+import son.ysy.architecture.error.ErrorReporter
 import son.ysy.architecture.getter.TokenGetter
 import son.ysy.architecture.getter.VersionGetter
 import son.ysy.architecture.http.json.annotations.CheckResponseCode
@@ -28,6 +29,7 @@ object ArchitectureInitializer {
         versionGetter: () -> VersionGetter,
         defaultCheckResponseCode: () -> CheckResponseCode,
         defaultIgnoreParents: () -> IgnoreParents,
+        errorReport: () -> ErrorReporter
     ) {
         startKoin {
             androidContext(application)
@@ -57,6 +59,10 @@ object ArchitectureInitializer {
 
                 single {
                     defaultIgnoreParents()
+                }
+
+                single {
+                    errorReport()
                 }
             })
         }
