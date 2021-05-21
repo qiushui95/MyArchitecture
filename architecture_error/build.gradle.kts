@@ -7,9 +7,15 @@ plugins {
 }
 
 group = rootProject.extra["groupId"].cast<String>()
+setProperty("archivesBaseName", "architecture-error")
 version = rootProject.extra["libVersion"].cast<String>()
 
-setProperty("archivesBaseName", "architecture-error")
+tasks.register("androidSourcesJar", Jar::class) {
+    archiveClassifier.set("sources")
+    from(android.sourceSets["main"].java.srcDirs)
+}
+
+artifacts.archives(tasks.getByName("androidSourcesJar"))
 
 android {
     compileSdkVersion(30)
@@ -21,8 +27,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-
-        sourceSets.getAt("main").java.srcDirs("src/main/kotlin")
     }
 
     compileOptions {

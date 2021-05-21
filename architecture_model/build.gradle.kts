@@ -7,9 +7,16 @@ plugins {
 }
 
 group = rootProject.extra["groupId"].cast<String>()
+setProperty("archivesBaseName", "architecture-model")
 version = rootProject.extra["libVersion"].cast<String>()
 
-setProperty("archivesBaseName", "architecture-model")
+tasks.register("sourcesJar", Jar::class) {
+    dependsOn("classes")
+    archiveClassifier.set("sources")
+    from(sourceSets.main.get().allSource)
+}
+
+artifacts.archives(tasks.getByName("sourcesJar"))
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
