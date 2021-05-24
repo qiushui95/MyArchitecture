@@ -3,7 +3,7 @@ package son.ysy.architecture.http.interceptor
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class BaseUrlInterceptor : Interceptor {
+class BaseUrlInterceptor : HttpInterceptor(0) {
 
     private var baseUrl: String? = null
 

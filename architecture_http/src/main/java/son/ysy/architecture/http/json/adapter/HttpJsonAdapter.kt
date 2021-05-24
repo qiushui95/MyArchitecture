@@ -7,18 +7,12 @@ import son.ysy.architecture.http.StarterOfArchitectureHttp
 import java.lang.reflect.Type
 
 /**
- * @param priority 优先级[0,Int.MAX_VALUE] 值越小越越先处理
+ * @param priority 优先级,值越小越越先处理
  */
 abstract class HttpJsonAdapter<T>(
     private val priority: Int = 100
 ) : JsonAdapter<T>(), Comparable<HttpJsonAdapter<*>> {
     abstract val type: Type
-
-    init {
-        if (priority < 0) {
-            throw IllegalArgumentException("priority must in [0,Int.MAX_VALUE]")
-        }
-    }
 
     private val koin by lazy {
         StarterOfArchitectureHttp.app.getKoin()

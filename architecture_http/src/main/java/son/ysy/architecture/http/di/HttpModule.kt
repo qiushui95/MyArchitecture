@@ -1,5 +1,6 @@
 package son.ysy.architecture.http.di
 
+import android.util.Log
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import org.koin.dsl.bind
@@ -7,24 +8,26 @@ import org.koin.dsl.module
 import retrofit2.Converter
 import retrofit2.Retrofit
 import son.ysy.architecture.constant.ArchitectureConstant
-import son.ysy.architecture.error.handler.ErrorMessageDisplayHandler
 import son.ysy.architecture.http.MoshiConverterFactory
-import son.ysy.architecture.http.error.RequestOtherErrorHandler
 import son.ysy.architecture.http.ext.addInterceptors
 import son.ysy.architecture.http.interceptor.BaseUrlInterceptor
+import son.ysy.architecture.http.interceptor.HttpInterceptor
 import java.util.concurrent.TimeUnit
 
 internal class HttpModule {
     val modules = module {
         single {
             BaseUrlInterceptor()
-        } bind Interceptor::class
+        } bind HttpInterceptor::class
 
         single {
             val timeout = getKoin().getProperty(ArchitectureConstant.KEY_HTTP_TIMEOUT, 10L)
 
+            val interceptors = getAll<HttpInterceptor>()
+                .sortedBy { it.priority }
+
             OkHttpClient.Builder()
-                .addInterceptors(getAll())
+                .addInterceptors(interceptors)
                 .readTimeout(timeout, TimeUnit.SECONDS)
                 .connectTimeout(timeout, TimeUnit.SECONDS)
                 .callTimeout(timeout, TimeUnit.SECONDS)

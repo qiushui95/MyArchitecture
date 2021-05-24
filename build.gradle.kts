@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 val isRemote by extra(false)
-val libVersion by extra("1.0.13")
+val libVersion by extra("1.0.14")
 val groupId by extra("com.github.qiushui95.MyArchitecture")
 
 val dependencyFormat by extra("com.github.qiushui95.MyArchitecture:%s:$libVersion")
