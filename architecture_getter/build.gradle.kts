@@ -1,4 +1,7 @@
-import org.jetbrains.kotlin.utils.addToStdlib.cast
+
+inline fun <reified T> getExtra(key: String): T {
+    return rootProject.extra[key] as T
+}
 
 plugins {
     id("java-library")
@@ -6,9 +9,9 @@ plugins {
     id("com.github.dcendents.android-maven")
 }
 
-group = rootProject.extra["groupId"].cast<String>()
-setProperty("archivesBaseName", "architecture-getter")
-version = rootProject.extra["libVersion"].cast<String>()
+group = getExtra("groupId")
+setProperty("archivesBaseName", getExtra<String>("archivesBaseNameFormat").format("getter"))
+version = getExtra("libVersion")
 
 tasks.register("sourcesJar", Jar::class) {
     dependsOn("classes")

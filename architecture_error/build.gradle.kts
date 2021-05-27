@@ -1,21 +1,16 @@
-import org.jetbrains.kotlin.utils.addToStdlib.cast
+inline fun <reified T> getExtra(key: String): T {
+    return rootProject.extra[key] as T
+}
 
 plugins {
     id("com.android.library")
-    id("kotlin-android")
+    kotlin("android")
     id("com.github.dcendents.android-maven")
 }
 
-group = rootProject.extra["groupId"].cast<String>()
-setProperty("archivesBaseName", "architecture-error")
-version = rootProject.extra["libVersion"].cast<String>()
-
-tasks.register("androidSourcesJar", Jar::class) {
-    archiveClassifier.set("sources")
-    from(android.sourceSets["main"].java.srcDirs)
-}
-
-artifacts.archives(tasks.getByName("androidSourcesJar"))
+group = getExtra("groupId")
+setProperty("archivesBaseName", getExtra<String>("archivesBaseNameFormat").format("error"))
+version = getExtra("libVersion")
 
 android {
     compileSdkVersion(30)
@@ -38,15 +33,24 @@ android {
     }
 }
 
-dependencies {
-
-    if (rootProject.extra["isRemote"] == true) {
-        implementation(rootProject.extra["dependencyFormat"].cast<String>().format("constant"))
-        implementation(rootProject.extra["dependencyFormat"].cast<String>().format("starter"))
+fun formatDependency(name: String): Any {
+    return if (getExtra("isRemote")) {
+        getExtra<String>("dependencyFormat").format(name)
     } else {
-        implementation(project(":architecture_constant"))
-        implementation(project(":architecture_starter"))
+        project(getExtra<String>("dependencyLocalFormat").format(name))
     }
-
-    compileOnly(rootProject.extra["koinAndroidExt"].cast<String>())
 }
+
+dependencies {
+    implementation(formatDependency("constant"))
+    implementation(formatDependency("starter"))
+
+    compileOnly(getExtra("koinAndroidExt"))
+}
+
+tasks.register("androidSourcesJar", Jar::class) {
+    archiveClassifier.set("sources")
+    from(android.sourceSets["main"].java.srcDirs)
+}
+
+artifacts.archives(tasks.getByName("androidSourcesJar"))

@@ -1,4 +1,6 @@
-import org.jetbrains.kotlin.utils.addToStdlib.cast
+inline fun <reified T> getExtra(key: String): T {
+    return rootProject.extra[key] as T
+}
 
 plugins {
     id("java-library")
@@ -6,9 +8,26 @@ plugins {
     id("com.github.dcendents.android-maven")
 }
 
-group = rootProject.extra["groupId"].cast<String>()
-setProperty("archivesBaseName", "architecture-model")
-version = rootProject.extra["libVersion"].cast<String>()
+group = getExtra("groupId")
+setProperty("archivesBaseName", getExtra<String>("archivesBaseNameFormat").format("model"))
+version = getExtra("libVersion")
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+fun formatDependency(name: String): Any {
+    return if (getExtra("isRemote")) {
+        getExtra<String>("dependencyFormat").format(name)
+    } else {
+        project(getExtra<String>("dependencyLocalFormat").format(name))
+    }
+}
+
+dependencies {
+    implementation(formatDependency("entity"))
+}
 
 tasks.register("sourcesJar", Jar::class) {
     dependsOn("classes")
@@ -17,16 +36,3 @@ tasks.register("sourcesJar", Jar::class) {
 }
 
 artifacts.archives(tasks.getByName("sourcesJar"))
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-
-dependencies {
-    if (rootProject.extra["isRemote"] == true) {
-        implementation(rootProject.extra["dependencyFormat"].cast<String>().format("entity"))
-    } else {
-        implementation(project(":architecture_entity"))
-    }
-}

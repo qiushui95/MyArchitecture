@@ -5,6 +5,8 @@ val libVersion by extra("1.0.14")
 val groupId by extra("com.github.qiushui95.MyArchitecture")
 
 val dependencyFormat by extra("com.github.qiushui95.MyArchitecture:%s:$libVersion")
+val archivesBaseNameFormat by extra("architecture-%s")
+val dependencyLocalFormat by extra(":architecture_%s")
 
 val koinDependencyFormat = "io.insert-koin:%s:3.0.2"
 val koinAndroidExt by extra(koinDependencyFormat.format("koin-android-ext"))
@@ -26,7 +28,7 @@ buildscript {
     }
     dependencies {
         classpath("com.android.tools.build:gradle:4.2.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10")
         classpath("com.github.dcendents:android-maven-gradle-plugin:2.1")
 
         // NOTE: Do not place your application dependencies here; they belong
