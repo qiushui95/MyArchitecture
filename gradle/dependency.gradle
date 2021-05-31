@@ -1,0 +1,25 @@
+static def artifactId(name) {
+    return "architecture-$name"
+}
+
+def architectureDependency(name) {
+    if (rootProject.ext.isRemote) {
+        def libVersion = rootProject.ext.libVersion
+        def libGroupId = rootProject.ext.libGroupId
+        def artifactId = artifactId(name)
+        "$libGroupId:$artifactId:$libVersion"
+    } else {
+        project(":"+artifactId(name).replace("-", "_"))
+    }
+}
+
+def kotlinDependency(name) {
+    def kotlinVersion = rootProject.ext.kotlinVersion
+    "org.jetbrains.kotlin:kotlin-$name:$kotlinVersion"
+}
+
+ext {
+    artifactId = this.&artifactId
+    architectureDependency = this.&architectureDependency
+    kotlinDependency = this.&kotlinDependency
+}

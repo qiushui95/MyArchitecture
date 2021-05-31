@@ -1,0 +1,49 @@
+plugins {
+    id("com.android.library")
+    id("kotlin-android")
+}
+
+android {
+    compileSdkVersion(30)
+    buildToolsVersion = "30.0.3"
+
+    defaultConfig {
+        minSdkVersion(21)
+        targetSdkVersion(30)
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+apply from: "../gradle/dependency.gradle"
+
+dependencies {
+    implementation(architectureDependency("constant"))
+    implementation(architectureDependency("entity"))
+    implementation(architectureDependency("error"))
+    implementation(architectureDependency("domain"))
+    implementation(architectureDependency("starter"))
+
+    implementation(rootProject.ext.dependency.Annotation)
+
+    implementation(rootProject.ext.dependency.Coroutines)
+
+    implementation(rootProject.ext.dependency.Koin)
+
+    implementation(rootProject.ext.dependency.Lifecycle)
+}
+
+ext {
+    PUBLISH_ARTIFACT_ID = artifactId("flow-work")
+}
+
+apply from: "../gradle/jitpack.gradle"

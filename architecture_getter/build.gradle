@@ -1,0 +1,18 @@
+plugins {
+    id("java-library")
+    id("kotlin")
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+}
+
+apply from: "../gradle/dependency.gradle"
+
+ext {
+    PUBLISH_ARTIFACT_ID = artifactId("getter")
+}
+
+apply from: "../gradle/jitpack.gradle"

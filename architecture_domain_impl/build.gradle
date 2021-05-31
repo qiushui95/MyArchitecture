@@ -1,0 +1,23 @@
+plugins {
+    id("java-library")
+    id("kotlin")
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+apply from: "../gradle/dependency.gradle"
+
+dependencies {
+    api(architectureDependency("domain"))
+    api(architectureDependency("entity"))
+
+    compileOnly(rootProject.ext.dependency.Coroutines)
+}
+
+
+ext {
+    PUBLISH_ARTIFACT_ID = artifactId("domain-impl")
+}
+
+apply from: "../gradle/jitpack.gradle"

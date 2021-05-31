@@ -1,0 +1,49 @@
+ext {
+    isRemote = false
+    libGroupId = "com.github.qiushui95.MyArchitecture"
+    libVersion = "1.0.16"
+}
+
+buildscript {
+    ext.kotlinVersion = "1.5.10"
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:4.2.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle.kts1 files
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        google()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    retrofitVersion = "2.9.0"
+    dependency = [
+            "Coroutines": "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0",
+            "Koin"      : "io.insert-koin:koin-android-ext:3.0.2",
+            "Annotation": "androidx.annotation:annotation:1.2.0",
+            "Lifecycle" : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1",
+            "OkHttp"    : "com.squareup.okhttp3:okhttp:4.9.1",
+            "Retrofit"  : [
+                    "Core" : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+                    "Moshi": "com.squareup.retrofit2:converter-moshi:$retrofitVersion",
+            ],
+            "Moshi"     : "com.squareup.moshi:moshi:1.12.0"
+    ]
+}

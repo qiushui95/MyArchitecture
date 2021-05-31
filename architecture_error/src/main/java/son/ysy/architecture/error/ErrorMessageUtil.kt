@@ -17,7 +17,7 @@ private object ErrorMessageUtil {
      * 是否打印错误栈
      */
     private val printStack by lazy {
-        BuildConfig.DEBUG || koin.getProperty(ArchitectureConstant.KEY_IS_DEVELOP, false)
+        koin.getProperty(ArchitectureConstant.KEY_IS_DEVELOP, false)
     }
 
     private val errorMessageHandlers by lazy {

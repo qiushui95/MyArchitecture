@@ -1,0 +1,53 @@
+plugins {
+    id("com.android.library")
+    id("kotlin-android")
+}
+
+android {
+    compileSdkVersion(30)
+    buildToolsVersion = "30.0.3"
+
+    defaultConfig {
+        minSdkVersion(21)
+        targetSdkVersion(30)
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+apply from: "../gradle/dependency.gradle"
+
+dependencies {
+    implementation(architectureDependency("ext"))
+    implementation(architectureDependency("constant"))
+    implementation(architectureDependency("starter"))
+    implementation(architectureDependency("error"))
+
+    implementation(kotlinDependency("reflect"))
+
+    implementation(rootProject.ext.dependency.OkHttp)
+
+    api(rootProject.ext.dependency.Retrofit.Core)
+    implementation(rootProject.ext.dependency.Retrofit.Moshi) {
+        exclude group: "com.squareup.moshi"
+    }
+
+    compileOnly(rootProject.ext.dependency.Moshi)
+
+    compileOnly(rootProject.ext.dependency.Koin)
+}
+
+ext {
+    PUBLISH_ARTIFACT_ID = artifactId("http")
+}
+
+apply from: "../gradle/jitpack.gradle"
